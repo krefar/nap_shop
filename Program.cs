@@ -3,7 +3,7 @@ var iPhone11 = new Good("IPhone 11");
 
 var warehouse = new Warehouse();
 var warehouseWorker = new WarehouseWorker(warehouse);
-var shop = new Shop(warehouse);
+var shop = new Shop();
 
 warehouse.Delive(iPhone12, 10);
 warehouse.Delive(iPhone11, 1);

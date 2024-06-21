@@ -1,4 +1,4 @@
-﻿public class WarehouseWorker
+﻿public class WarehouseWorker : IWarehouseInteractor
 {
     private readonly Warehouse _warehouse;
 
@@ -7,7 +7,7 @@
         _warehouse = warehouse ?? throw new ArgumentNullException(nameof(warehouse));
     }
 
-    public WarehouseItem GetItemFromWarehouse(Good good, int count)
+    public IWarehouseItemReadonly GetItemFromWarehouse(Good good, int count)
     {
         return _warehouse.GetItem(good, count);
     }
@@ -17,7 +17,7 @@
         if (order == null)
             throw new ArgumentNullException(nameof(order));
 
-        foreach (WarehouseItem item in order.Items)
+        foreach (IWarehouseItemReadonly item in order.Items)
         {
             _warehouse.RemoveItem(item);
         }

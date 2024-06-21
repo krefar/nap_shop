@@ -1,28 +1,28 @@
 ﻿public class Cart
 {
-    private readonly List<WarehouseItem> _items;
+    private readonly List<IWarehouseItemReadonly> _items;
 
     public Cart()
     {
-        _items = new List<WarehouseItem>();
+        _items = new List<IWarehouseItemReadonly>();
     }
 
-    public void Add(Good good, int count, WarehouseWorker worker)
+    public void Add(Good good, int count, IWarehouseInteractor interactor)
     {
-        if (worker == null)
-            throw new ArgumentNullException(nameof(worker));
+        if (interactor == null)
+            throw new ArgumentNullException(nameof(interactor));
 
-        _items.Add(worker.GetItemFromWarehouse(good, count));
+        _items.Add(interactor.GetItemFromWarehouse(good, count));
     }
 
-    public Order Order(WarehouseWorker worker)
+    public Order Order(IWarehouseInteractor interactor)
     {
-        if (worker == null)
-            throw new ArgumentNullException(nameof(worker));
+        if (interactor == null)
+            throw new ArgumentNullException(nameof(interactor));
 
         var order = new Order(_items);
 
-        worker.ProcessOrder(order);
+        interactor.ProcessOrder(order);
 
         return order;
     }

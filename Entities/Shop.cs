@@ -1,19 +1,11 @@
 ﻿public class Shop
 {
-    private readonly Warehouse _warehouse;
-
-    public Shop(Warehouse warehouse)
+    public Shop()
     {
-        _warehouse = warehouse ?? throw new ArgumentNullException(nameof(warehouse));
     }
 
     public Cart Cart()
     {
         return new Cart();
-    }
-
-    public WarehouseItem GetItem(Good good, int count)
-    {
-        return _warehouse.GetItem(good, count);
     }
 }

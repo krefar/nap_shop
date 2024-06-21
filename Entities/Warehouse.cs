@@ -23,7 +23,7 @@
         }
     }
 
-    public WarehouseItem GetItem(Good good, int count)
+    public IWarehouseItemReadonly GetItem(Good good, int count)
     {
         Validate(good, count);
 
@@ -42,7 +42,7 @@
         return new WarehouseItem(existingItem.Good, count);
     }
     
-    public void RemoveItem(WarehouseItem item)
+    public void RemoveItem(IWarehouseItemReadonly item)
     {
         Validate(item);
 
@@ -61,14 +61,6 @@
         existingItem.DecreaseCount(item.Count);
     }
 
-    private void Validate(WarehouseItem item)
-    {
-        if (item == null)
-            throw new ArgumentNullException(nameof(item));
-
-        Validate(item.Good, item.Count);
-    }
-
     public void ViewItems()
     {
         Console.WriteLine($"Warehouse");
@@ -77,6 +69,14 @@
         {
             Console.WriteLine($"Good:{item.Good.Title}, count:{item.Count}");
         }
+    }
+
+    private void Validate(IWarehouseItemReadonly item)
+    {
+        if (item == null)
+            throw new ArgumentNullException(nameof(item));
+
+        Validate(item.Good, item.Count);
     }
 
     private void Validate(Good good, int count)

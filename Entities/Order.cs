@@ -1,8 +1,8 @@
 ﻿public class Order
 {
-    private readonly List<WarehouseItem> _items;
+    private readonly List<IWarehouseItemReadonly> _items;
 
-    public Order(List<WarehouseItem> items)
+    public Order(List<IWarehouseItemReadonly> items)
     {
         if (items == null)
             throw new ArgumentNullException("items");
@@ -14,7 +14,7 @@
         Paylink = $"{items.GetHashCode()}";
     }
 
-    public IReadOnlyList<WarehouseItem> Items => _items;
+    public IReadOnlyList<IWarehouseItemReadonly> Items => _items;
 
     public string Paylink { get; }
 }

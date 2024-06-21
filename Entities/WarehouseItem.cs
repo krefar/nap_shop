@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-
-public class WarehouseItem
+﻿public class WarehouseItem : IWarehouseItemReadonly
 {
     public WarehouseItem(Good good, int count)
     {
