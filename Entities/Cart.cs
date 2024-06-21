@@ -1,23 +1,39 @@
 ﻿public class Cart
 {
-    private readonly Shop _shop;
     private readonly List<WarehouseItem> _items;
 
-    public Cart(Shop shop)
+    public Cart()
     {
-        _shop = shop ?? throw new ArgumentNullException(nameof(shop));
         _items = new List<WarehouseItem>();
     }
 
-    public IReadOnlyList<WarehouseItem> Items => _items;
-
-    public void Add(Good good, int count)
+    public void Add(Good good, int count, WarehouseWorker worker)
     {
-        _items.Add(_shop.GetItem(good, count));
+        if (worker == null)
+            throw new ArgumentNullException(nameof(worker));
+
+        _items.Add(worker.GetItemFromWarehouse(good, count));
     }
 
-    public Order Order()
+    public Order Order(WarehouseWorker worker)
     {
-        return new Order(_items);
+        if (worker == null)
+            throw new ArgumentNullException(nameof(worker));
+
+        var order = new Order(_items);
+
+        worker.ProcessOrder(order);
+
+        return order;
+    }
+
+    public void ViewItems()
+    {
+        Console.WriteLine($"Cart");
+
+        foreach (var item in _items)
+        {
+            Console.WriteLine($"Good:{item.Good.Title}, count:{item.Count}");
+        }
     }
 }

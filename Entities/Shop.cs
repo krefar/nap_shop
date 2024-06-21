@@ -9,7 +9,7 @@
 
     public Cart Cart()
     {
-        return new Cart(this);
+        return new Cart();
     }
 
     public WarehouseItem GetItem(Good good, int count)

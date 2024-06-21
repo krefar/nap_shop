@@ -1,4 +1,6 @@
-﻿public class WarehouseItem
+﻿using System.Diagnostics.Metrics;
+
+public class WarehouseItem
 {
     public WarehouseItem(Good good, int count)
     {
@@ -10,5 +12,21 @@
     }
 
     public Good Good { get; }
-    public int Count { get; set; }
+    public int Count { get; private set; }
+
+    public void IncreaseCount(int count)
+    {
+        if (count < 0)
+            throw new ArgumentOutOfRangeException(nameof(count));
+
+        Count += count;
+    }
+    
+    public void DecreaseCount(int count)
+    {
+        if (count < 0)
+            throw new ArgumentOutOfRangeException(nameof(count));
+
+        Count -= count;
+    }
 }

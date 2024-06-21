@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("nap_shop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa0626a1788c049c24ece06536f0becce1b2fab9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12a19b6087ac3e6ff55357bb0d9ba3b0c7864c5a")]
 [assembly: System.Reflection.AssemblyProductAttribute("nap_shop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("nap_shop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

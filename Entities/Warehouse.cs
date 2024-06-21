@@ -7,8 +7,6 @@
         _items = new List<WarehouseItem>();
     }
 
-    public IReadOnlyList<WarehouseItem> Items => _items;
-
     public void Delive(Good good, int count)
     {
         Validate(good, count);
@@ -21,7 +19,7 @@
         }
         else
         {
-            existingItem.Count += count;
+            existingItem.IncreaseCount(count);
         }
     }
 
@@ -33,17 +31,52 @@
 
         if (existingItem == null)
         {
-            throw new InvalidOperationException($"'{good.Title}' не найден на складе");
+            throw new InvalidOperationException($"'{good.Title}' не найден на складе для добавления в корзину");
         }
 
         if (existingItem.Count < count)
         {
-            throw new InvalidOperationException($"На складе недостаточное кол-во '{good.Title}'");
+            throw new InvalidOperationException($"На складе недостаточное кол-во '{good.Title}' для добавления в корзину");
         }
 
-        existingItem.Count -= count;
-
         return new WarehouseItem(existingItem.Good, count);
+    }
+    
+    public void RemoveItem(WarehouseItem item)
+    {
+        Validate(item);
+
+        WarehouseItem? existingItem = _items.FirstOrDefault(item => item.Good.Title == item.Good.Title);
+
+        if (existingItem == null)
+        {
+            throw new InvalidOperationException($"'{item.Good.Title}' не найден на складе для оформления заказа");
+        }
+
+        if (existingItem.Count < item.Count)
+        {
+            throw new InvalidOperationException($"На складе недостаточное кол-во '{item.Good.Title}' для оформления заказа");
+        }
+
+        existingItem.DecreaseCount(item.Count);
+    }
+
+    private void Validate(WarehouseItem item)
+    {
+        if (item == null)
+            throw new ArgumentNullException(nameof(item));
+
+        Validate(item.Good, item.Count);
+    }
+
+    public void ViewItems()
+    {
+        Console.WriteLine($"Warehouse");
+
+        foreach (var item in _items)
+        {
+            Console.WriteLine($"Good:{item.Good.Title}, count:{item.Count}");
+        }
     }
 
     private void Validate(Good good, int count)
