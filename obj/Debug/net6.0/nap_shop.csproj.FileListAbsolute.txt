@@ -1,0 +1,15 @@
+D:\Projects\nap_shop\bin\Debug\net6.0\nap_shop.exe
+D:\Projects\nap_shop\bin\Debug\net6.0\nap_shop.deps.json
+D:\Projects\nap_shop\bin\Debug\net6.0\nap_shop.runtimeconfig.json
+D:\Projects\nap_shop\bin\Debug\net6.0\nap_shop.dll
+D:\Projects\nap_shop\bin\Debug\net6.0\nap_shop.pdb
+D:\Projects\nap_shop\obj\Debug\net6.0\nap_shop.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\nap_shop\obj\Debug\net6.0\nap_shop.AssemblyInfoInputs.cache
+D:\Projects\nap_shop\obj\Debug\net6.0\nap_shop.AssemblyInfo.cs
+D:\Projects\nap_shop\obj\Debug\net6.0\nap_shop.csproj.CoreCompileInputs.cache
+D:\Projects\nap_shop\obj\Debug\net6.0\nap_shop.dll
+D:\Projects\nap_shop\obj\Debug\net6.0\refint\nap_shop.dll
+D:\Projects\nap_shop\obj\Debug\net6.0\nap_shop.pdb
+D:\Projects\nap_shop\obj\Debug\net6.0\nap_shop.genruntimeconfig.cache
+D:\Projects\nap_shop\obj\Debug\net6.0\ref\nap_shop.dll
+D:\Projects\nap_shop\obj\Debug\net6.0\nap_shop.sourcelink.json
