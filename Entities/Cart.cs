@@ -19,9 +19,10 @@
 
     public Order Order()
     {
-        var order = new Order(_items);
-
+        var order = new Order(new List<IWarehouseItemReadonly>(_items));
         _interactor.ProcessOrder(order);
+        
+        _items.Clear();
 
         return order;
     }
