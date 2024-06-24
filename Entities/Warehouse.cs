@@ -1,4 +1,4 @@
-﻿public class Warehouse
+﻿public class Warehouse : IWarehouseInteractor
 {
     private readonly List<WarehouseItem> _items;
 
@@ -23,7 +23,33 @@
         }
     }
 
-    public IWarehouseItemReadonly GetItem(Good good, int count)
+    public IWarehouseItemReadonly GetItemFromWarehouse(Good good, int count)
+    {
+        return GetItem(good, count);
+    }
+
+    public void ProcessOrder(Order order)
+    {
+        if (order == null)
+            throw new ArgumentNullException(nameof(order));
+
+        foreach (IWarehouseItemReadonly item in order.Items)
+        {
+            RemoveItem(item);
+        }
+    }
+
+    public void ViewItems()
+    {
+        Console.WriteLine($"Warehouse");
+
+        foreach (var item in _items)
+        {
+            Console.WriteLine($"Good:{item.Good.Title}, count:{item.Count}");
+        }
+    }
+
+    private IWarehouseItemReadonly GetItem(Good good, int count)
     {
         Validate(good, count);
 
@@ -41,8 +67,8 @@
 
         return new WarehouseItem(existingItem.Good, count);
     }
-    
-    public void RemoveItem(IWarehouseItemReadonly item)
+
+    private void RemoveItem(IWarehouseItemReadonly item)
     {
         Validate(item);
 
@@ -59,16 +85,6 @@
         }
 
         existingItem.DecreaseCount(item.Count);
-    }
-
-    public void ViewItems()
-    {
-        Console.WriteLine($"Warehouse");
-
-        foreach (var item in _items)
-        {
-            Console.WriteLine($"Good:{item.Good.Title}, count:{item.Count}");
-        }
     }
 
     private void Validate(IWarehouseItemReadonly item)
